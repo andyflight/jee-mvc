@@ -3,7 +3,7 @@ package com.example.labwebapp.servlets.votings;
 import com.example.labwebapp.models.User;
 import com.example.labwebapp.models.Voting;
 import com.example.labwebapp.services.VotingService;
-import com.example.labwebapp.services.VotingServiceStubImpl;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +15,9 @@ import java.util.UUID;
 
 @WebServlet(name = "VotingStatusServlet", urlPatterns = "/votings/status")
 public class VotingStatusServlet extends HttpServlet {
-    private final VotingService votingService = new VotingServiceStubImpl();
+
+    @EJB
+    private VotingService votingService;
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

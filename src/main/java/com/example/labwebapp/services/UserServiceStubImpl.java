@@ -2,18 +2,17 @@ package com.example.labwebapp.services;
 
 import com.example.labwebapp.models.User;
 import com.example.labwebapp.repositories.UserRepository;
-import com.example.labwebapp.repositories.UserRepositoryStubImpl;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@Stateless
 public class UserServiceStubImpl implements  UserService{
 
-    UserRepository repository = UserRepositoryStubImpl.getInstance();
-
-    public UserServiceStubImpl() {
-        // Default constructor
-    }
+    @EJB
+    private UserRepository repository;
 
     @Override
     public Optional<User> getUserById(UUID id) {

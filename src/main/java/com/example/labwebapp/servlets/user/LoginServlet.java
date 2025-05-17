@@ -2,7 +2,7 @@ package com.example.labwebapp.servlets.user;
 
 import com.example.labwebapp.models.User;
 import com.example.labwebapp.services.UserService;
-import com.example.labwebapp.services.UserServiceStubImpl;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +14,9 @@ import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-    private final UserService userService = new UserServiceStubImpl();
+
+    @EJB
+    private UserService userService;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

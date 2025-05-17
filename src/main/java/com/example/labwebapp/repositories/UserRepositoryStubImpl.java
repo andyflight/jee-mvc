@@ -1,22 +1,18 @@
 package com.example.labwebapp.repositories;
 
 import com.example.labwebapp.models.User;
+import jakarta.ejb.ConcurrencyManagement;
+import jakarta.ejb.ConcurrencyManagementType;
+import jakarta.ejb.Singleton;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Singleton
+@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class UserRepositoryStubImpl implements UserRepository {
 
-    private static final UserRepository instance = new UserRepositoryStubImpl();
-
     private final Map<UUID, User> users = new ConcurrentHashMap<>();
-
-    private UserRepositoryStubImpl() {
-        // Default constructor
-    }
-
-    public static UserRepository getInstance() {
-        return instance;
-    }
 
     @Override
     public Optional<User> findById(UUID id) {
