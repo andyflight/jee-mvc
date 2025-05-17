@@ -5,18 +5,17 @@ import com.example.labwebapp.models.User;
 import com.example.labwebapp.models.Vote;
 import com.example.labwebapp.models.Voting;
 import com.example.labwebapp.repositories.VotingRepository;
-import com.example.labwebapp.repositories.VotingRepositoryStubImpl;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.*;
 
+@Stateless
 public class VotingServiceStubImpl implements VotingService {
 
-    private final VotingRepository repository = VotingRepositoryStubImpl.getInstance();
-
-    public VotingServiceStubImpl() {
-        // Default constructor
-    }
+    @EJB
+    private VotingRepository repository;
 
     @Override
     public List<Voting> getAllVotings() {

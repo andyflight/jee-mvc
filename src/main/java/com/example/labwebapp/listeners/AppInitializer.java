@@ -6,6 +6,7 @@ import com.example.labwebapp.services.UserService;
 import com.example.labwebapp.services.UserServiceStubImpl;
 import com.example.labwebapp.services.VotingService;
 import com.example.labwebapp.services.VotingServiceStubImpl;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
@@ -21,6 +22,12 @@ import java.util.UUID;
 public class AppInitializer implements ServletContextListener {
 
     private final Logger log = LoggerFactory.getLogger(AppInitializer.class);
+
+    @EJB
+    private VotingService votingService;
+
+    @EJB
+    private UserService userService;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -39,8 +46,6 @@ public class AppInitializer implements ServletContextListener {
     }
 
     private void initializeTestData() {
-        VotingService votingService = new VotingServiceStubImpl();
-        UserService userService = new UserServiceStubImpl();
         
         if (votingService.getAllVotings().isEmpty()) {
             log.info("Creating sample voting data...");

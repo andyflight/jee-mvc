@@ -4,7 +4,7 @@ import com.example.labwebapp.models.Candidate;
 import com.example.labwebapp.models.User;
 import com.example.labwebapp.models.Voting;
 import com.example.labwebapp.services.VotingService;
-import com.example.labwebapp.services.VotingServiceStubImpl;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +19,9 @@ import java.util.stream.Collectors;
 
 @WebServlet(name = "VotingCreateServlet", urlPatterns = "/votings/create")
 public class VotingCreateServlet extends HttpServlet {
-    private final VotingService votingService = new VotingServiceStubImpl();
+
+    @EJB
+    private VotingService votingService;
 
 
     @Override
