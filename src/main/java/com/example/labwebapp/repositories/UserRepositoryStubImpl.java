@@ -2,12 +2,13 @@ package com.example.labwebapp.repositories;
 
 import com.example.labwebapp.models.User;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UserRepositoryStubImpl implements UserRepository {
 
     private static final UserRepository instance = new UserRepositoryStubImpl();
 
-    private final Map<UUID, User> users = new HashMap<>();
+    private final Map<UUID, User> users = new ConcurrentHashMap<>();
 
     private UserRepositoryStubImpl() {
         // Default constructor

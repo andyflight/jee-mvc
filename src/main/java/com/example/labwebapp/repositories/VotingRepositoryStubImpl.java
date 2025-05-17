@@ -4,11 +4,12 @@ import com.example.labwebapp.models.Vote;
 import com.example.labwebapp.models.Voting;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class VotingRepositoryStubImpl implements VotingRepository {
     private static final VotingRepository instance = new VotingRepositoryStubImpl();
-    private final Map<UUID, Voting> votings = new HashMap<>();
+    private final Map<UUID, Voting> votings = new ConcurrentHashMap<>();
 
     private VotingRepositoryStubImpl() {
         // Default constructor
